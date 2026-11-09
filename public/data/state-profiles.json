@@ -1,0 +1,50 @@
+[
+  {
+    "state_code": "rajasthan",
+    "state_name": "Rajasthan",
+    "case_role": "Focal case",
+    "administrative_model": "Revenue administration with Tehsil-level certification",
+    "digital_delivery_model": "e-Mitra and government online service channels",
+    "selection_rationale": "Existing corpus, historical issuance circulars and an established kiosk-based delivery network",
+    "comparison_status": "selected",
+    "registered_sources": 4,
+    "extracted_records": 45,
+    "verified_evidence_entries": 0
+  },
+  {
+    "state_code": "kerala",
+    "state_name": "Kerala",
+    "case_role": "Comparative digital-service case",
+    "administrative_model": "Village Office and Taluk-level revenue administration",
+    "digital_delivery_model": "e-District and Akshaya service-centre network",
+    "selection_rationale": "Published certificate requirements, service timelines, validity and local-enquiry procedures",
+    "comparison_status": "selected",
+    "registered_sources": 6,
+    "extracted_records": 39,
+    "verified_evidence_entries": 0
+  },
+  {
+    "state_code": "karnataka",
+    "state_name": "Karnataka",
+    "case_role": "Comparative integrated-service case",
+    "administrative_model": "Nadakacheri and revenue administration",
+    "digital_delivery_model": "Seva Sindhu / Seva One and citizen service centres",
+    "selection_rationale": "Documented operator-mediated application, field verification and digital approval workflow",
+    "comparison_status": "selected",
+    "registered_sources": 4,
+    "extracted_records": 1,
+    "verified_evidence_entries": 0
+  },
+  {
+    "state_code": "bihar",
+    "state_name": "Bihar",
+    "case_role": "Contrasting administrative and digital-service case",
+    "administrative_model": "Circle, Sub-Division and District-level certificate issuance",
+    "digital_delivery_model": "RTPS / ServicePlus and BiharOne, with online, kiosk and offline channels",
+    "selection_rationale": "Documented administrative hierarchy, multiple application routes and published process flowchart",
+    "comparison_status": "selected",
+    "registered_sources": 5,
+    "extracted_records": 3,
+    "verified_evidence_entries": 0
+  }
+]

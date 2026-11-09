@@ -1,0 +1,10 @@
+{
+  "snapshot_date": "2026-11-09",
+  "state_cases": 4,
+  "registered_sources": 19,
+  "extracted_content_records": 119,
+  "unverified_evidence_candidates": 93,
+  "verified_evidence_entries": 0,
+  "research_status": "Evidence verification in progress",
+  "methodological_note": "These figures describe the research collection, not administrative performance or service quality. Machine-screened candidates are not verified findings."
+}
