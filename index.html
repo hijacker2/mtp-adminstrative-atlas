@@ -9,6 +9,19 @@
     />
     <meta name="theme-color" content="#f5f2e9" />
     <title>Administrative Landscape — MTP Administrative Atlas</title>
+    <script>
+      (() => {
+        try {
+          const mode = localStorage.getItem('mtp-atlas-theme');
+          const dark = mode === 'dark' || (mode !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#222321' : '#f5f2e9');
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

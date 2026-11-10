@@ -164,6 +164,7 @@ export default function IndiaStateMap({ states, selectedStateId, onSelectState }
               return (
                 <path
                   key={state.name}
+                  data-state-code={state.researchState?.state_code}
                   className={`india-map-state${state.researchState ? ' is-research-state' : ''}${isSelected ? ' is-selected' : ''}`}
                   d={state.path}
                   fill={fill}

@@ -1,31 +1,30 @@
 import { useEffect, useMemo, useState } from 'react'
-import CollectionOverview from './components/CollectionOverview'
-import Hero from './components/Hero'
-import ResearchApproach from './components/ResearchApproach'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import SiteFooter from './components/SiteFooter'
 import SiteHeader from './components/SiteHeader'
-import SourceCoverage from './components/SourceCoverage'
-import StateExplorer from './components/StateExplorer'
+import { ThemeProvider } from './components/ThemeProvider'
 import { loadResearchData } from './data/loadResearchData'
+import AdministrativeLandscape from './pages/AdministrativeLandscape'
+import BurdenObservatory from './pages/BurdenObservatory'
 import type { ResearchData } from './types/research'
 
-export default function App() {
+export interface ResearchOutletContext {
+  data: ResearchData
+  sourceCounts: Map<string, number>
+  profileExtractedTotal: number | null
+}
+
+function ResearchLayout() {
   const [researchData, setResearchData] = useState<ResearchData | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [retryKey, setRetryKey] = useState(0)
-  const [selectedStateId, setSelectedStateId] = useState('')
 
   useEffect(() => {
     const controller = new AbortController()
     setResearchData(null)
     setLoadError(null)
     loadResearchData(controller.signal)
-      .then((data) => {
-        setResearchData(data)
-        setSelectedStateId((current) => data.profiles.some((profile) => profile.state_code === current)
-          ? current
-          : data.profiles[0]?.state_code ?? '')
-      })
+      .then(setResearchData)
       .catch((error: unknown) => {
         if (controller.signal.aborted) return
         setLoadError(error instanceof Error ? error.message : 'Research data could not be loaded.')
@@ -42,7 +41,7 @@ export default function App() {
     ]))
   }, [researchData])
 
-  const extractedProfileTotal = researchData?.profiles.every((profile) => profile.extracted_records !== null)
+  const profileExtractedTotal = researchData?.profiles.every((profile) => profile.extracted_records !== null)
     ? researchData.profiles.reduce((total, profile) => total + (profile.extracted_records ?? 0), 0)
     : null
 
@@ -74,30 +73,35 @@ export default function App() {
     )
   }
 
+  const context: ResearchOutletContext = {
+    data: researchData,
+    sourceCounts,
+    profileExtractedTotal,
+  }
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div id="top" />
       <SiteHeader />
-      <main id="main-content">
-        <Hero states={researchData.profiles} />
-        <StateExplorer
-          states={researchData.profiles}
-          selectedStateId={selectedStateId}
-          onSelectState={setSelectedStateId}
-        />
-        <CollectionOverview
-          overview={researchData.overview}
-          profileExtractedTotal={extractedProfileTotal}
-        />
-        <SourceCoverage
-          profiles={researchData.profiles}
-          sources={researchData.sources}
-          sourceCounts={sourceCounts}
-        />
-        <ResearchApproach overview={researchData.overview} />
-      </main>
+      <Outlet context={context} />
       <SiteFooter snapshotDate={researchData.overview.snapshot_date} />
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<ResearchLayout />}>
+            <Route index element={<AdministrativeLandscape />} />
+            <Route path="observatory" element={<BurdenObservatory />} />
+            <Route path="*" element={<AdministrativeLandscape />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
