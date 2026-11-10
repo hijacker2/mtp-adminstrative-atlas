@@ -1,9 +1,9 @@
 import type { AtlasOverview, ResearchData, SourceRecord, StateProfile } from '../types/research'
 
 const paths = {
-  overview: '/data/atlas-overview.json',
-  profiles: '/data/state-profiles.json',
-  sources: '/data/source-register.json',
+  overview: `${import.meta.env.BASE_URL}data/atlas-overview.json`,
+  profiles: `${import.meta.env.BASE_URL}data/state-profiles.json`,
+  sources: `${import.meta.env.BASE_URL}data/source-register.json`,
 } as const
 
 function isRecord(value: unknown): value is Record<string, unknown> {

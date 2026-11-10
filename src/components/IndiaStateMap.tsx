@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import type { CSSProperties, KeyboardEvent } from 'react'
 import { stateAppearance, type StateProfile } from '../types/research'
 
-const mapUrl = '/maps/india-states.geojson'
+const mapUrl = `${import.meta.env.BASE_URL}maps/india-states.geojson`
 const mapViewBox = { width: 720, height: 680 }
 const neutralFill = '#e2ded3'
 

@@ -18,9 +18,9 @@ export default function SiteHeader() {
       </Link>
       <nav className="primary-nav" aria-label="Main navigation">
         <NavLink className={({ isActive }) => isActive && !isObservatory ? 'nav-current' : ''} to="/" end>Atlas</NavLink>
-        <a href="/#states">States</a>
-        <a href="/#sources">Sources</a>
-        <a href="/#method">Method</a>
+        <a href={`${import.meta.env.BASE_URL}#states`}>States</a>
+        <a href={`${import.meta.env.BASE_URL}#sources`}>Sources</a>
+        <a href={`${import.meta.env.BASE_URL}#method`}>Method</a>
         <NavLink className={({ isActive }) => isActive ? 'nav-current' : ''} to="/observatory">Burden Observatory</NavLink>
       </nav>
       <label className="theme-control">

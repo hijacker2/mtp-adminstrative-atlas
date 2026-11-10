@@ -93,7 +93,7 @@ function ResearchLayout() {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<ResearchLayout />}>
             <Route index element={<AdministrativeLandscape />} />
